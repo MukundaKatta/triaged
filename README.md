@@ -1,32 +1,47 @@
 # Triaged
 
-> Your inbox, on autopilot.
-
 AI reads every email, sorts it, summarizes threads, and drafts replies in your voice. All for five dollars a month.
 
-## What it does
+**Status:** v0 skeleton — landing page + email-sorting demo route. Full AI not yet wired.
 
-- **Smart sorting** — Only ever see what matters. The rest gets batched or quietly archived.
-- **Voice-matched drafts** — Reply suggestions that sound like you, not a corporate robot.
-- **Two minutes a day** — That is how long it takes to clear your inbox with Triaged.
+**Landing:** https://triaged.vercel.app
 
-## Why
+---
 
-Productivity. Part of a 20-product exploration of high-demand consumer and SMB markets.
+## Stack
 
-## Status
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind v4 |
+| Fonts | Inter via `next/font/google` |
+| Hosting | Vercel (zero config) |
+| Waitlist | https://waitlist-api-sigma.vercel.app |
 
-Landing page live. Product in planning.
+## Run locally
 
-- **Live**: https://mukundakatta.github.io/triaged/
+```bash
+pnpm install
+pnpm dev
+```
 
-## Stack (when built)
+Open http://localhost:3000.
 
-- Next.js 16 (App Router)
-- Supabase for auth + data
-- Stripe for payments
-- Deployed on Vercel
+## Deploy
 
-## Local preview
+Push to `main` — Vercel picks it up automatically. No environment variables required.
 
-Just open `index.html` in a browser — it is a static landing page with the Tailwind CDN.
+## Routes
+
+| Route | Description |
+|---|---|
+| `/` | Landing page (original copy + design preserved) |
+| `/try` | v0 email sorter — 5 sample emails auto-sorted into Urgent, Reply, Read Later, Trash via keyword rules |
+| `/api/waitlist` | `POST { email }` → forwards to waitlist-api-sigma with `product: "triaged"` |
+
+## What's next
+
+- Wire real AI (contextual sorting + thread summarization)
+- Voice-matched draft generation
+- Auth + per-user inbox connection
